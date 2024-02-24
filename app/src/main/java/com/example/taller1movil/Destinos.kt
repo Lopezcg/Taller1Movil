@@ -1,7 +1,9 @@
 package com.example.taller1movil
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import org.json.JSONObject
@@ -27,8 +29,23 @@ class Destinos : AppCompatActivity() {
                 arreglo.add(jsonObject.getString("nombre"))
             }
         }
-
+        list.setOnItemClickListener { parent, view, position, id ->
+            val jsonObject = destinosJson.getJSONObject(position)
+            val intent = Intent(this, ElementoLista::class.java)
+            val bundle = Bundle().apply {
+                putString("nombre", jsonObject.getString("nombre"))
+                putString("pais", jsonObject.getString("pais"))
+                putString("categoria", jsonObject.getString("categoria"))
+                putString("plan", jsonObject.getString("plan"))
+                putString("precio", jsonObject.getString("precio"))
+            }
+            intent.putExtra("Destino", bundle)
+            startActivity(intent)
+        }
     }
+
+
+
     fun loadJSONFromAsset(): String? {
         var json: String? = null
         try {

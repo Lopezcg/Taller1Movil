@@ -12,8 +12,12 @@ import android.widget.Button
 import android.widget.MediaController
 import android.widget.Spinner
 import android.widget.VideoView
+import com.google.android.material.navigation.NavigationBarView.OnItemSelectedListener
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() ,AdapterView.OnItemSelectedListener{
+    var categoriaSeleccionada: String = "Todos"
+    var bundle: Bundle = Bundle()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -22,22 +26,9 @@ class MainActivity : AppCompatActivity() {
         val BTN3 = findViewById<Button>(R.id.button3)
         val spinner=findViewById<Spinner>(R.id.spinner1)
         val intent= Intent(this,Destinos::class.java)
-        val bundle=Bundle()
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                val categoriaSeleccionada = parent?.getItemAtPosition(position).toString()
-                bundle.putString("categoria", categoriaSeleccionada)
 
-            }
-            override fun onNothingSelected(parent: AdapterView<*>) {
-                // Another interface callback.
-            }
-        }
+        spinner.onItemSelectedListener = this
+        bundle.putString("categoria", categoriaSeleccionada)
         intent.putExtra("info",bundle)
         BTN1.setOnClickListener{
             startActivity(intent)
@@ -69,4 +60,19 @@ class MainActivity : AppCompatActivity() {
         videoView.requestFocus()
         videoView.start()*/
     }
+     override fun onItemSelected(
+        parent: AdapterView<*>?,
+        view: View?,
+        position: Int,
+
+        id: Long
+    ) {
+         categoriaSeleccionada = parent?.getItemAtPosition(position).toString()
+         bundle.putString("categoria", categoriaSeleccionada)
+
+    }
+     override fun onNothingSelected(parent: AdapterView<*>) {
+        // Another interface callback.
+    }
+
 }

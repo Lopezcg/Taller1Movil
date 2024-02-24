@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Taller1Movil"
         tools:targetApi="31">
         <activity
+            android:name=".ElementoLista"
+            android:exported="false" />
+        <activity
             android:name=".Destinos"
             android:exported="false" />
         <activity
