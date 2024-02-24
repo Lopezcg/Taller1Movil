@@ -2,7 +2,7 @@
 <resources>
     <string-array name="Categorias">
         <item>Todos</item>
-        <item>Playa</item>
+        <item>Playas</item>
         <item>Montañas</item>
         <item>Ciudades Históricas</item>
         <item>Maravillas del Mundo</item>
