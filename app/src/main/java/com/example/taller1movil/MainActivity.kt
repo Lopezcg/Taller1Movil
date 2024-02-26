@@ -11,10 +11,17 @@ import android.widget.AdapterView
 import android.widget.Button
 import android.widget.MediaController
 import android.widget.Spinner
+import android.widget.TextView
 import android.widget.VideoView
 import com.google.android.material.navigation.NavigationBarView.OnItemSelectedListener
 
 class MainActivity : AppCompatActivity() ,AdapterView.OnItemSelectedListener{
+
+    companion object {
+        val bundle = Bundle()
+        var arreglo1:MutableList<Bundle> = ArrayList()
+    }
+
     var categoriaSeleccionada: String = "Todos"
     var bundle: Bundle = Bundle()
 
@@ -26,12 +33,22 @@ class MainActivity : AppCompatActivity() ,AdapterView.OnItemSelectedListener{
         val BTN3 = findViewById<Button>(R.id.button3)
         val spinner=findViewById<Spinner>(R.id.spinner1)
         val intent= Intent(this,Destinos::class.java)
+        val intent1= Intent(this, ListaFavoritos::class.java)
+        val intent2= Intent(this, Recomendaciones::class.java)
 
         spinner.onItemSelectedListener = this
         bundle.putString("categoria", categoriaSeleccionada)
         intent.putExtra("info",bundle)
         BTN1.setOnClickListener{
             startActivity(intent)
+        }
+
+        BTN2.setOnClickListener{
+            startActivity(intent1)
+        }
+
+        BTN3.setOnClickListener{
+            startActivity(intent2)
         }
         /*
         val videoView = findViewById<VideoView>(R.id.videoview)
