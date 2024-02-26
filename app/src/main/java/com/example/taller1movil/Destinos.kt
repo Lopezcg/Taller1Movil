@@ -19,6 +19,7 @@ class Destinos : AppCompatActivity() {
         val adapter= ArrayAdapter(this,android.R.layout.simple_list_item_1,arreglo)
         list.adapter=adapter
         val json= JSONObject(loadJSONFromAsset())
+        var i = 0
         val destinosJson = json.getJSONArray("destinos")
         val informacion= intent.getBundleExtra("info")
         for (i in 0 until destinosJson.length()){
@@ -30,7 +31,19 @@ class Destinos : AppCompatActivity() {
             }
         }
         list.setOnItemClickListener { parent, view, position, id ->
-            val jsonObject = destinosJson.getJSONObject(position)
+           if(informacion?.getString("categoria")=="Montañas"){
+                i = 3
+            }
+            else if(informacion?.getString("categoria")=="Ciudades Históricas"){
+                i = 6
+            }
+            else if(informacion?.getString("categoria")=="Maravillas del Mundo"){
+                i = 9
+            }
+            else if(informacion?.getString("categoria")=="Selvas"){
+                i = 12
+            }
+            val jsonObject = destinosJson.getJSONObject(position+i)
             val intent = Intent(this, ElementoLista::class.java)
             val bundle = Bundle().apply {
                 putString("nombre", jsonObject.getString("nombre"))
