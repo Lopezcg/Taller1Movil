@@ -10,4 +10,4 @@ Este taller ha sido desarrollado por el grupo "FESACA" como parte de nuestro tra
 
 
 ## Link del video de las funcionalidades del sistema:
-
+https://youtu.be/Gi-SlIGPRDE
