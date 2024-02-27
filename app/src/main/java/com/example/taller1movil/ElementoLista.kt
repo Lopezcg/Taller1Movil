@@ -36,17 +36,32 @@ class ElementoLista : AppCompatActivity() {
             val categoria = destino?.getString("categoria")
             val plan = destino?.getString("plan")
             val precio = destino?.getString("precio")
-            val bundle = Bundle().apply {
-                putString("nombre", nombre)
-                putString("pais", pais)
-                putString("categoria", categoria)
-                putString("plan", plan)
-                putString("precio", precio)
+            
+            var destinoYaExiste = false
+            for (bundle in MainActivity.arreglo1) {
+                if (bundle.getString("nombre") == nombre) {
+                    destinoYaExiste = true
+                    break
+                }
             }
-            MainActivity.arreglo1.add(bundle)
-            val toast = Toast.makeText(this, "Añadido a favoritos", Toast.LENGTH_SHORT)
-            toast.setGravity(Gravity.CENTER or Gravity.TOP, 0, 900)
-            toast.show()
+
+            if (!destinoYaExiste) {
+                val bundle = Bundle().apply {
+                    putString("nombre", nombre)
+                    putString("pais", pais)
+                    putString("categoria", categoria)
+                    putString("plan", plan)
+                    putString("precio", precio)
+                }
+                MainActivity.arreglo1.add(bundle)
+                val toast = Toast.makeText(this, "Añadido a favoritos", Toast.LENGTH_SHORT)
+                toast.setGravity(Gravity.CENTER or Gravity.TOP, 0, 900)
+                toast.show()
+            } else {
+                val toast = Toast.makeText(this, "El destino ya ha sido añadido anteriormente", Toast.LENGTH_SHORT)
+                toast.setGravity(Gravity.CENTER, 0, 900)
+                toast.show()
+            }
         }
     }
 }
