@@ -7,8 +7,7 @@ Este taller ha sido desarrollado por el grupo "FESACA" como parte de nuestro tra
 - Santiago Guerrero Danderino
 - Felipe Londoño Campos
 - Carlos Gabriel López Medina
-- Estudiante 4
-- Estudiante 5
+
 
 ## Link del video de las funcionalidades del sistema:
 
