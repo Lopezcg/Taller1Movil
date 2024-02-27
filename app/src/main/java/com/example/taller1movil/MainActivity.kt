@@ -35,47 +35,15 @@ class MainActivity : AppCompatActivity() ,AdapterView.OnItemSelectedListener{
         val intent= Intent(this,Destinos::class.java)
         val intent1= Intent(this, ListaFavoritos::class.java)
         val intent2= Intent(this, Recomendaciones::class.java)
-
         spinner.onItemSelectedListener = this
         bundle.putString("categoria", categoriaSeleccionada)
         intent.putExtra("info",bundle)
         BTN1.setOnClickListener{
-            startActivity(intent)
-        }
-
+            startActivity(intent) }
         BTN2.setOnClickListener{
-            startActivity(intent1)
-        }
-
+            startActivity(intent1) }
         BTN3.setOnClickListener{
-            startActivity(intent2)
-        }
-        /*
-        val videoView = findViewById<VideoView>(R.id.videoview)
-        val uri = Uri.parse("https://v1.pinimg.com/videos/mc/720p/5f/54/c1/5f54c1e83c67bcb239c6c0c7484d8e12.mp4")
-        videoView.setVideoURI(uri)
-        videoView.setOnPreparedListener { mediaPlayer ->
-            mediaPlayer.isLooping = true // Reproducir en bucle
-            val videoWidth = mediaPlayer.videoWidth.toFloat()
-            val videoHeight = mediaPlayer.videoHeight.toFloat()
-            val videoProportion = videoWidth / videoHeight
-
-            val screenWidth = resources.displayMetrics.widthPixels.toFloat()
-            val screenHeight = resources.displayMetrics.heightPixels.toFloat()
-            val screenProportion = screenWidth / screenHeight
-
-            val layoutParams = videoView.layoutParams
-            if (videoProportion > screenProportion) {
-                layoutParams.width = screenWidth.toInt()
-                layoutParams.height = (screenWidth / videoProportion).toInt()
-            } else {
-                layoutParams.width = (videoProportion * screenHeight).toInt()
-                layoutParams.height = screenHeight.toInt()
-            }
-            videoView.layoutParams = layoutParams
-        }
-        videoView.requestFocus()
-        videoView.start()*/
+            startActivity(intent2) }
     }
      override fun onItemSelected(
         parent: AdapterView<*>?,

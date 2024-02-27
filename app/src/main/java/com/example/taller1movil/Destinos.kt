@@ -3,9 +3,9 @@ package com.example.taller1movil
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
 import java.io.InputStream
@@ -15,13 +15,18 @@ class Destinos : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_destinos)
-        val list=findViewById<ListView>(R.id.Li)
-        val adapter= ArrayAdapter(this,android.R.layout.simple_list_item_1,arreglo)
-        list.adapter=adapter
-        val json= JSONObject(loadJSONFromAsset())
-        var i = 0
+        val list = findViewById<ListView>(R.id.Li)
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, arreglo)
+        list.adapter = adapter
+        val json = JSONObject(loadJSONFromAsset())
         val destinosJson = json.getJSONArray("destinos")
-        val informacion= intent.getBundleExtra("info")
+        val informacion = intent.getBundleExtra("info")
+
+        llenarDestinos(list, adapter, json, destinosJson, informacion)
+    }
+
+    fun llenarDestinos(list: ListView, adapter: ArrayAdapter<String>, json:JSONObject, destinosJson:JSONArray, informacion: Bundle?){
+        var i = 0
         for (i in 0 until destinosJson.length()){
             val jsonObject = destinosJson.getJSONObject(i)
             if (informacion?.getString("categoria")=="Todos") {
@@ -30,6 +35,7 @@ class Destinos : AppCompatActivity() {
                 arreglo.add(jsonObject.getString("nombre"))
             }
         }
+
         list.setOnItemClickListener { parent, view, position, id ->
            if(informacion?.getString("categoria")=="Montañas"){
                 i = 3
@@ -56,8 +62,6 @@ class Destinos : AppCompatActivity() {
             startActivity(intent)
         }
     }
-
-
 
     fun loadJSONFromAsset(): String? {
         var json: String? = null
